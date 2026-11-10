@@ -1,0 +1,672 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Roshan Kumar</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one sticky nav, four hash-routed views (#home #about #learn #join) in a 1120px column.
+   The hero pairs a big claim with a fill-in-the-blanks cold message; highlighter marks are the one bold gesture. */
+:root {
+  --bg: #EEF2EF;
+  --surface: #FFFFFF;
+  --ink: #0E2A2B;
+  --muted: #4C6465;
+  --line: #C9D6D2;
+  --accent: #F2B705;
+  --accent-ink: #0E2A2B;
+  --link: #0B6B67;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "DM Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0A1D1E; --surface: #112A2B; --ink: #E9F1EE; --muted: #9DB5B2;
+    --line: #234342; --accent: #F2B705; --accent-ink: #0E2A2B; --link: #5FD1C9;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0A1D1E; --surface: #112A2B; --ink: #E9F1EE; --muted: #9DB5B2;
+  --line: #234342; --accent: #F2B705; --accent-ink: #0E2A2B; --link: #5FD1C9;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  background: var(--bg); z-index: 10;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+a { color: var(--link); }
+:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+
+.wrap {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* Header */
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9;
+  background: var(--bg); border-bottom: 1px solid var(--line);
+}
+.bar { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 24px; padding-block: 12px; }
+.brand {
+  order: 1; display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.2rem;
+  color: var(--ink); text-decoration: none;
+}
+.brand .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--accent); }
+.nav { order: 3; flex-basis: 100%; display: flex; flex-wrap: wrap; align-items: center; gap: 6px 22px; }
+.nav a {
+  color: var(--muted); text-decoration: none; font-weight: 500;
+  padding: 6px 0; border-bottom: 2px solid transparent;
+}
+.nav a:hover { color: var(--ink); }
+.nav a[aria-current="page"] { color: var(--ink); border-bottom-color: var(--accent); }
+.nav a.nav-join {
+  background: var(--accent); color: var(--accent-ink); font-weight: 700;
+  padding: 6px 14px; border-radius: 4px; border-bottom: 0;
+}
+.nav a.nav-join[aria-current="page"] { outline: 2px solid var(--ink); outline-offset: 2px; }
+@media (min-width: 720px) {
+  .nav { order: 2; flex-basis: auto; margin-left: auto; }
+}
+
+/* Shared type */
+.eyebrow {
+  font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--muted);
+}
+.mark {
+  background: var(--accent); color: var(--accent-ink);
+  padding: 0 0.18em; -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+h2 { font-size: clamp(1.55rem, 3.2vw, 2.2rem); line-height: 1.12; letter-spacing: -0.01em; }
+h3 { font-size: 1.2rem; line-height: 1.25; }
+.lede { font-size: 1.15rem; color: var(--muted); max-width: 58ch; }
+.prose { max-width: 62ch; display: grid; gap: 16px; }
+.section { display: grid; gap: 28px; padding-top: clamp(44px, 7vw, 84px); }
+.section-head { display: grid; gap: 10px; }
+.page-title { font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.02em; max-width: 18ch; }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 12px 20px; font: 700 1rem var(--font-body); line-height: 1.2;
+  border-radius: 4px; border: 2px solid var(--ink); background: transparent; color: var(--ink);
+  text-decoration: none; cursor: pointer;
+}
+.btn-primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.btn-big { padding: 16px 28px; font-size: 1.15rem; }
+.btn-small { padding: 6px 12px; font-size: 0.9rem; }
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: transform 0.15s ease; }
+  .btn:hover { transform: translateY(-2px); }
+}
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Views */
+.view { padding-block: clamp(32px, 6vw, 72px) clamp(48px, 8vw, 96px); }
+
+/* Home */
+.hero { display: grid; gap: 40px; grid-template-columns: 1fr; }
+.hero > * { min-width: 0; }
+@media (min-width: 920px) { .hero { grid-template-columns: 1.3fr 1fr; align-items: end; } }
+.hero-copy { display: grid; gap: 22px; align-content: start; }
+.hero h1 {
+  font-size: clamp(2.5rem, 7vw, 5rem); line-height: 1.02; letter-spacing: -0.025em;
+  font-weight: 700; max-width: 13ch;
+}
+.brief {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+  padding: 24px; display: grid; gap: 16px;
+}
+.brief-text { font-family: var(--font-display); font-size: 1.3rem; line-height: 1.7; font-weight: 500; }
+.brief-note { font-size: 0.92rem; color: var(--muted); }
+.proof {
+  list-style: none; margin: clamp(36px, 6vw, 64px) 0 0; padding: 18px 0;
+  border-block: 1px solid var(--line);
+  display: flex; flex-wrap: wrap; gap: 14px 48px;
+}
+.proof li { display: flex; align-items: baseline; gap: 10px; }
+.proof b {
+  font-family: var(--font-display); font-size: 1.8rem; line-height: 1; font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+.proof span { color: var(--muted); font-size: 0.95rem; }
+.cols3 { display: grid; gap: 32px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
+.cols3 > * { min-width: 0; }
+.pillar { border-top: 2px solid var(--ink); padding-top: 16px; display: grid; gap: 10px; align-content: start; }
+.pillar p { color: var(--muted); }
+.cta-band {
+  margin-top: clamp(44px, 7vw, 84px); padding: clamp(24px, 4vw, 44px);
+  background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+  display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; justify-content: space-between;
+}
+.cta-band h2 { max-width: 22ch; }
+
+/* About */
+.about-grid { display: grid; gap: 40px; grid-template-columns: 1fr; }
+.about-grid > * { min-width: 0; }
+@media (min-width: 860px) { .about-grid { grid-template-columns: 300px 1fr; gap: 64px; align-items: start; } }
+.side { display: grid; gap: 24px; }
+.portrait {
+  width: 100%; max-width: 320px; aspect-ratio: 4 / 5; border-radius: 4px;
+  background: var(--accent); color: var(--accent-ink);
+  display: grid; place-items: center;
+  font-family: var(--font-display); font-weight: 800; font-size: clamp(4rem, 12vw, 6.5rem); letter-spacing: -0.04em;
+}
+.facts { margin: 0; display: grid; gap: 14px; }
+.facts div { border-top: 1px solid var(--line); padding-top: 10px; }
+.facts dt { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 2px 0 0; font-weight: 500; }
+.about-main { display: grid; gap: 0; }
+.about-main h1 { font-size: clamp(2.1rem, 5vw, 3.4rem); line-height: 1.05; letter-spacing: -0.02em; max-width: 18ch; }
+.checklist { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.checklist li {
+  position: relative; padding: 14px 0 14px 32px; border-top: 1px solid var(--line); max-width: 62ch;
+}
+.checklist li:last-child { border-bottom: 1px solid var(--line); }
+.checklist li::before {
+  content: ""; position: absolute; left: 0; top: 1.35em; width: 14px; height: 14px;
+  background: var(--accent); border-radius: 2px;
+}
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li {
+  font-family: var(--font-mono); font-size: 0.85rem; padding: 4px 12px;
+  border: 1px solid var(--line); border-radius: 999px; background: var(--surface);
+}
+
+/* Learn */
+.filters { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.filters button {
+  font: 500 0.95rem var(--font-body); padding: 7px 16px; border-radius: 999px; cursor: pointer;
+  border: 1px solid var(--muted); background: transparent; color: var(--ink);
+}
+.filters button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); font-weight: 700; }
+.count { margin-left: auto; font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); }
+.cases { display: grid; }
+.case {
+  display: grid; gap: 8px 32px; grid-template-columns: 1fr;
+  padding-block: 24px; border-top: 1px solid var(--line);
+}
+.case:last-child { border-bottom: 1px solid var(--line); }
+.case > * { min-width: 0; }
+@media (min-width: 760px) { .case { grid-template-columns: 200px 1fr; } }
+.case-meta { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); display: grid; gap: 2px; align-content: start; }
+.case-body { display: grid; gap: 8px; max-width: 64ch; }
+.case-body p { color: var(--muted); }
+.case-body .result { color: var(--ink); }
+.label { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-right: 8px; }
+.offer {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 4px;
+  padding: 24px; display: grid; gap: 10px; align-content: start;
+}
+.offer p { color: var(--muted); }
+.steps { list-style: none; margin: 0; padding: 0; }
+.steps li {
+  display: grid; grid-template-columns: 84px 1fr; gap: 16px;
+  padding-block: 16px; border-top: 1px solid var(--line);
+}
+.steps li:last-child { border-bottom: 1px solid var(--line); }
+.steps b { font-family: var(--font-mono); font-weight: 500; }
+.steps p { max-width: 62ch; }
+.steps strong { font-family: var(--font-display); font-size: 1.1rem; }
+
+/* Join */
+.contact-grid { display: grid; gap: 48px; grid-template-columns: 1fr; }
+.contact-grid > * { min-width: 0; }
+@media (min-width: 900px) { .contact-grid { grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: start; } }
+.contact-intro { display: grid; gap: 22px; align-content: start; }
+.link-row {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px;
+  padding: 14px 16px; border: 1px solid var(--line); border-radius: 4px; background: var(--surface);
+}
+.link-row code { font-family: var(--font-mono); font-size: 0.95rem; overflow-wrap: anywhere; user-select: all; }
+.rules { margin: 0; display: grid; gap: 10px; }
+.rules div { display: flex; flex-wrap: wrap; gap: 4px 16px; border-top: 1px solid var(--line); padding-top: 10px; }
+.rules dt { font-family: var(--font-mono); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); min-width: 96px; padding-top: 3px; }
+.rules dd { margin: 0; font-weight: 500; flex: 1 1 200px; min-width: 0; }
+.form-box { display: grid; gap: 14px; }
+.form-box h2 { font-size: 1.5rem; }
+form { display: grid; gap: 18px; }
+.field { display: grid; gap: 6px; }
+.field label { font-weight: 700; font-size: 0.95rem; }
+.field input, .field select, .field textarea {
+  width: 100%; font: inherit; color: var(--ink); background: var(--surface);
+  border: 1px solid var(--muted); border-radius: 4px; padding: 11px 12px;
+}
+.field textarea { resize: vertical; min-height: 110px; }
+.draft { display: grid; gap: 12px; padding: 18px; border: 2px solid var(--accent); border-radius: 4px; background: var(--surface); }
+.draft textarea { min-height: 150px; font-family: var(--font-mono); font-size: 0.9rem; width: 100%; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 4px; padding: 12px; }
+.draft p { color: var(--muted); font-size: 0.92rem; }
+.status { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); min-height: 1.2em; }
+
+/* Footer */
+.site-footer { border-top: 1px solid var(--line); }
+.foot { display: flex; flex-wrap: wrap; gap: 10px 32px; justify-content: space-between; padding-block: 28px; color: var(--muted); font-size: 0.92rem; }
+.foot nav { display: flex; gap: 6px 18px; flex-wrap: wrap; }
+.foot a { color: var(--muted); }
+</style>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="bar">
+      <a class="brand" href="#home"><span class="dot" aria-hidden="true"></span>Roshan Kumar</a>
+      <nav class="nav" aria-label="Main">
+        <a href="#home" data-link="home">Home</a>
+        <a href="#about" data-link="about">About</a>
+        <a href="#learn" data-link="learn">Learn</a>
+        <a href="#join" data-link="join" class="nav-join">Join free</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section class="view" data-view="home">
+  <div class="wrap">
+    <div class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Sales coach · Free group for ages 19 to 21</p>
+        <h1>Learn to <span class="mark">sell</span> before your first job.</h1>
+        <p class="lede">I'm Roshan, a sales expert. I run a free WhatsApp group where students and first-jobbers learn real sales skills: how to start a conversation, handle a "no" and ask for the deal.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#join">Join the free group</a>
+          <a class="btn" href="#learn">What you'll learn</a>
+        </div>
+      </div>
+      <aside class="brief" aria-label="Example cold message">
+        <p class="eyebrow">A first message that gets replies</p>
+        <p class="brief-text">Hi <span class="mark">[name]</span>, I noticed <span class="mark">[one specific thing about them]</span>. I help <span class="mark">[who]</span> with <span class="mark">[result]</span>. Open to a 5-minute chat this week?</p>
+        <p class="brief-note">Specific beats clever. Fill the four blanks, read it out loud, then send it. This is the kind of thing we practise in the group.</p>
+      </aside>
+    </div>
+
+    <ul class="proof" aria-label="Group at a glance">
+      <li><b>₹0</b><span>to join the group</span></li>
+      <li><b>19–21</b><span>made for this age group</span></li>
+      <li><b>WhatsApp</b><span>where you already are</span></li>
+    </ul>
+
+    <div class="section">
+      <div class="section-head">
+        <p class="eyebrow">What you get in the group</p>
+        <h2>Simple sales skills you can use this week</h2>
+      </div>
+      <div class="cols3">
+        <div class="pillar">
+          <h3>Word-for-word scripts</h3>
+          <p>Messages and call openers you can copy, change a few words in, and use the same day.</p>
+        </div>
+        <div class="pillar">
+          <h3>Handling "no"</h3>
+          <p>Why people say "too expensive" or "let me think", and what to say next without feeling awkward.</p>
+        </div>
+        <div class="pillar">
+          <h3>Small practice tasks</h3>
+          <p>Short challenges to try with friends, at college events or on a side hustle, then share what happened.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-band">
+      <h2>Join the free group and send your first pitch this week.</h2>
+      <a class="btn btn-primary" href="#join">Get the group link</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="view" data-view="about" hidden>
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="side">
+        <!-- Replace this block with your own photo (embed as a data: URI) -->
+        <div class="portrait" role="img" aria-label="Portrait placeholder with the initials RK"><span>RK</span></div>
+        <dl class="facts">
+          <div><dt>Works with</dt><dd>Students and first-jobbers</dd></div>
+          <div><dt>Age group</dt><dd>19 to 21</dd></div>
+          <div><dt>Where</dt><dd>A free WhatsApp group</dd></div>
+          <div><dt>Cost</dt><dd>Free to join</dd></div>
+        </dl>
+      </div>
+
+      <div class="about-main">
+        <p class="eyebrow">About</p>
+        <h1 style="margin-top:10px">Sales is a skill, and you can practise it.</h1>
+        <div class="prose" style="margin-top:24px">
+          <p>I'm Roshan Kumar, a sales expert. I started this group because most people in their early twenties are never taught how to sell, yet every job, side hustle and business depends on it.</p>
+          <p>Selling is helping someone make a decision. In the group I explain what works in plain language, with examples you can try the same day, so you build confidence by doing and not by reading theory.</p>
+        </div>
+
+        <div class="section">
+          <h2>Is this group for you?</h2>
+          <ul class="checklist">
+            <li>You are between 19 and 21 years old.</li>
+            <li>You want to earn through sales, freelancing or a side hustle.</li>
+            <li>You get nervous talking to people you don't know.</li>
+            <li>You want clear steps you can try today, not long lectures.</li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>How I teach</h2>
+          <div class="cols3">
+            <div class="pillar"><h3>Practise out loud</h3><p>Reading about sales helps a little. Saying the words out loud helps a lot.</p></div>
+            <div class="pillar"><h3>Small asks first</h3><p>Start with a low-pressure question, then build up to asking for the decision.</p></div>
+            <div class="pillar"><h3>Listen more than you pitch</h3><p>The best sellers ask good questions and let the other person talk.</p></div>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2>Topics we cover</h2>
+          <ul class="chips">
+            <li>Cold messages</li><li>Phone calls</li><li>Objection handling</li><li>Negotiation basics</li>
+            <li>Follow-ups</li><li>Confidence</li><li>Side-hustle selling</li><li>Interview skills</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEARN -->
+<section class="view" data-view="learn" hidden>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Learn</p>
+      <h1 class="page-title">What you'll learn in the group</h1>
+      <p class="lede">Each topic is explained in short messages with examples. Pick the stage you want to improve first.</p>
+    </div>
+
+    <div class="section" style="padding-top:32px">
+      <div class="filters" role="group" aria-label="Filter topics">
+        <button type="button" data-filter="all" aria-pressed="true">All</button>
+        <button type="button" data-filter="reaching" aria-pressed="false">Reaching out</button>
+        <button type="button" data-filter="talking" aria-pressed="false">Talking</button>
+        <button type="button" data-filter="closing" aria-pressed="false">Closing</button>
+        <button type="button" data-filter="growing" aria-pressed="false">Growing</button>
+        <span class="count" id="caseCount" aria-live="polite">Showing 5 topics</span>
+      </div>
+
+      <div class="cases">
+        <article class="case" data-tag="reaching">
+          <div class="case-meta"><span>Stage 1</span><span>Reaching out</span></div>
+          <div class="case-body">
+            <h3>Cold messages that get replies</h3>
+            <p>How to write a first message on Instagram, LinkedIn or WhatsApp that a stranger actually answers.</p>
+            <p class="result"><span class="label">You will be able to</span>Send a first message without sounding like spam.</p>
+          </div>
+        </article>
+        <article class="case" data-tag="talking">
+          <div class="case-meta"><span>Stage 2</span><span>Talking</span></div>
+          <div class="case-body">
+            <h3>Phone and video calls</h3>
+            <p>Opening lines, asking good questions and staying calm when the other person goes quiet.</p>
+            <p class="result"><span class="label">You will be able to</span>Know exactly what to say in the first 30 seconds.</p>
+          </div>
+        </article>
+        <article class="case" data-tag="closing">
+          <div class="case-meta"><span>Stage 3</span><span>Closing</span></div>
+          <div class="case-body">
+            <h3>Handling "no" and objections</h3>
+            <p>Why people say "too expensive" or "I'll think about it", and the questions that help them decide.</p>
+            <p class="result"><span class="label">You will be able to</span>Turn a "no" into a question you can answer.</p>
+          </div>
+        </article>
+        <article class="case" data-tag="closing">
+          <div class="case-meta"><span>Stage 3</span><span>Closing</span></div>
+          <div class="case-body">
+            <h3>Asking for the sale</h3>
+            <p>Simple ways to ask for a decision without pressure, so the other person feels helped and not pushed.</p>
+            <p class="result"><span class="label">You will be able to</span>Ask for the deal calmly and clearly.</p>
+          </div>
+        </article>
+        <article class="case" data-tag="growing">
+          <div class="case-meta"><span>Stage 4</span><span>Growing</span></div>
+          <div class="case-body">
+            <h3>Follow-ups and repeat customers</h3>
+            <p>How to follow up three times without being annoying, and how to keep a customer coming back.</p>
+            <p class="result"><span class="label">You will be able to</span>Follow up with a plan instead of guessing.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <p class="eyebrow">How the group works</p>
+        <h2>Free, simple and made for your pace</h2>
+      </div>
+      <div class="cols3">
+        <div class="offer">
+          <h3>Free to join</h3>
+          <p>No fee and no course to buy. Join with the link and start reading.</p>
+        </div>
+        <div class="offer">
+          <h3>Plain language</h3>
+          <p>Short messages and real examples. No jargon and no long lectures.</p>
+        </div>
+        <div class="offer">
+          <h3>Practice tasks</h3>
+          <p>Small challenges to try on your own, then share what happened and ask questions.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <div class="section-head">
+        <p class="eyebrow">How to start</p>
+        <h2>Four steps, about ten minutes</h2>
+      </div>
+      <ol class="steps">
+        <li><b>Step 1</b><p><strong>Join the group.</strong> Tap the join button and open the invite link on WhatsApp.</p></li>
+        <li><b>Step 2</b><p><strong>Read the pinned message.</strong> It has the group rules and a starter guide.</p></li>
+        <li><b>Step 3</b><p><strong>Try the first task.</strong> Send one practice message to a friend or a real contact.</p></li>
+        <li><b>Step 4</b><p><strong>Share what happened.</strong> Tell the group how it went and ask what to improve.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- JOIN -->
+<section class="view" data-view="join" hidden>
+  <div class="wrap">
+    <div class="contact-grid">
+      <div class="contact-intro">
+        <p class="eyebrow">Join free</p>
+        <h1 class="page-title">Join the free sales group.</h1>
+        <p class="lede">Tap the button, join on WhatsApp and read the pinned message first. It takes less than a minute.</p>
+
+        <div class="actions">
+          <a class="btn btn-primary btn-big" id="waLink" href="https://chat.whatsapp.com/YOUR-INVITE-CODE" target="_blank" rel="noopener">Join on WhatsApp</a>
+        </div>
+
+        <div>
+          <p class="eyebrow" style="margin-bottom:8px">Or share the invite link</p>
+          <div class="link-row">
+            <code id="waText">https://chat.whatsapp.com/YOUR-INVITE-CODE</code>
+            <button class="btn btn-small" type="button" id="copyLink">Copy</button>
+            <span class="status" id="linkStatus" aria-live="polite"></span>
+          </div>
+        </div>
+
+        <dl class="rules">
+          <div><dt>Who</dt><dd>Students and first-jobbers aged 19 to 21</dd></div>
+          <div><dt>Cost</dt><dd>Free to join</dd></div>
+          <div><dt>Rules</dt><dd>Be respectful, no spam, no links to other groups, ask questions freely</dd></div>
+        </dl>
+      </div>
+
+      <div class="form-box">
+        <h2>Introduce yourself in the group</h2>
+        <p class="lede" style="font-size:1rem">Fill this in and I'll write a short intro for you. Paste it in the group after you join.</p>
+        <form id="introForm" novalidate>
+          <div class="field">
+            <label for="f-name">Your name</label>
+            <input id="f-name" name="name" type="text" autocomplete="given-name" required>
+          </div>
+          <div class="field">
+            <label for="f-age">Your age</label>
+            <select id="f-age" name="age">
+              <option>19</option>
+              <option>20</option>
+              <option>21</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-topic">I want to get better at</label>
+            <select id="f-topic" name="topic">
+              <option>cold messages</option>
+              <option>phone and video calls</option>
+              <option>handling "no" and objections</option>
+              <option>asking for the sale</option>
+              <option>follow-ups</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="f-goal">What do you want to earn or achieve?</label>
+            <textarea id="f-goal" name="goal" required></textarea>
+          </div>
+          <div class="actions"><button class="btn btn-primary" type="submit">Write my intro</button></div>
+          <p class="status" id="formStatus" aria-live="polite"></p>
+        </form>
+
+        <div class="draft" id="draft" hidden>
+          <label class="label" for="draftText" style="margin:0">Your intro, ready to paste</label>
+          <textarea id="draftText" readonly></textarea>
+          <div class="actions">
+            <button class="btn btn-primary btn-small" type="button" id="copyDraft">Copy intro</button>
+            <span class="status" id="draftStatus" aria-live="polite"></span>
+          </div>
+          <p>This page cannot post for you. Copy the intro and paste it into the WhatsApp group.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="foot">
+      <span>© 2026 Roshan Kumar. Free sales skills for ages 19 to 21.</span>
+      <nav aria-label="Footer">
+        <a href="#home">Home</a><a href="#about">About</a><a href="#learn">Learn</a><a href="#join">Join free</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* Change your WhatsApp group invite link here (one place only) */
+  var WA_LINK = 'https://chat.whatsapp.com/YOUR-INVITE-CODE';
+  document.getElementById('waLink').setAttribute('href', WA_LINK);
+  document.getElementById('waText').textContent = WA_LINK;
+
+  var names = ['home', 'about', 'learn', 'join'];
+  var views = document.querySelectorAll('[data-view]');
+  var links = document.querySelectorAll('[data-link]');
+
+  function route() {
+    var h = (location.hash || '').replace('#', '');
+    if (names.indexOf(h) < 0) h = 'home';
+    for (var i = 0; i < views.length; i++) views[i].hidden = views[i].getAttribute('data-view') !== h;
+    for (var j = 0; j < links.length; j++) {
+      if (links[j].getAttribute('data-link') === h) links[j].setAttribute('aria-current', 'page');
+      else links[j].removeAttribute('aria-current');
+    }
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener('hashchange', route);
+  route();
+
+  /* Learn filters */
+  var chips = document.querySelectorAll('[data-filter]');
+  var cases = document.querySelectorAll('.case');
+  var count = document.getElementById('caseCount');
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      var f = chip.getAttribute('data-filter');
+      var n = 0;
+      chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+      cases.forEach(function (cs) {
+        var ok = f === 'all' || cs.getAttribute('data-tag') === f;
+        cs.hidden = !ok;
+        if (ok) n++;
+      });
+      count.textContent = 'Showing ' + n + (n === 1 ? ' topic' : ' topics');
+    });
+  });
+
+  /* Copy helper with selection fallback */
+  function copyText(text, target, status) {
+    function fallback() {
+      try {
+        if (target && target.select) { target.focus(); target.select(); }
+        else if (target) {
+          var r = document.createRange(); r.selectNodeContents(target);
+          var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        }
+      } catch (e) {}
+      status.textContent = 'Selected. Press Ctrl+C or long-press to copy.';
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { status.textContent = 'Copied.'; }, fallback);
+      } else { fallback(); }
+    } catch (e) { fallback(); }
+  }
+
+  var linkEl = document.getElementById('waText');
+  document.getElementById('copyLink').addEventListener('click', function () {
+    copyText(linkEl.textContent, linkEl, document.getElementById('linkStatus'));
+  });
+
+  /* Intro form: builds a message to copy, nothing is sent */
+  var form = document.getElementById('introForm');
+  var draft = document.getElementById('draft');
+  var draftText = document.getElementById('draftText');
+  var formStatus = document.getElementById('formStatus');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var d = new FormData(form);
+    var name = String(d.get('name') || '').trim();
+    var goal = String(d.get('goal') || '').trim();
+    if (!name || !goal) {
+      formStatus.textContent = 'Add your name and your goal first.';
+      return;
+    }
+    formStatus.textContent = '';
+    draftText.value =
+      'Hi everyone, I\'m ' + name + ', ' + d.get('age') + ' years old.\n' +
+      'I want to get better at ' + d.get('topic') + '.\n' +
+      'My goal: ' + goal + '\n' +
+      'Looking forward to learning from you all!';
+    draft.hidden = false;
+    draftText.focus();
+  });
+  document.getElementById('copyDraft').addEventListener('click', function () {
+    copyText(draftText.value, draftText, document.getElementById('draftStatus'));
+  });
+})();
+</script>
+
+</body></html>
